@@ -5,13 +5,12 @@ import useForm from "../../hooks/useForm";
 import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import { StaticRoutes } from "../../routes";
 
-export interface LoginPageProps {}
-
-const LoginPage: React.FC<LoginPageProps> = () => {
+const LoginPage = () => {
   const [incorrectPassword, setIncorrectPassword] = useState(false);
   const { handleForm, formState } = useForm({ email: "", password: "" });
-  const { getItem } = useLocalStorage();
+  const { getItem, setItem } = useLocalStorage();
   const navigate = useNavigate();
 
   const disabled = !formState.email || !formState.password;
@@ -25,9 +24,9 @@ const LoginPage: React.FC<LoginPageProps> = () => {
           user.email === formState.email && user.password === formState.password
       )
     ) {
-      return navigate("/posts");
-    }
-    return setIncorrectPassword(true);
+      setItem(storageKeys.login, { logged: formState.email });
+      navigate(StaticRoutes.posts);
+    } else setIncorrectPassword(true);
   };
   return (
     <>

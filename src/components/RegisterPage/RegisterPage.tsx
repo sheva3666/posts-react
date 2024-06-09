@@ -5,9 +5,7 @@ import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
 import { useNavigate } from "react-router";
 import "./RegisterPage.scss";
 
-export interface RegisterPageProps {}
-
-const RegisterPage: React.FC<RegisterPageProps> = () => {
+const RegisterPage = () => {
   const { handleForm, formState } = useForm({ email: "", password: "" });
   const { setItems, getItem } = useLocalStorage();
   const navigate = useNavigate();
