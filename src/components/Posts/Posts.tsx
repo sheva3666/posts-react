@@ -1,12 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import usePostsStore from "../../stores/postsStore";
-import { fetchPosts } from "../../api/api";
+import { fetchPosts, createPost } from "../../api/api";
 import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
 import { StaticRoutes } from "../../routes";
+import Button from "../common/Button/Button";
+import Input from "../common/Input/Input";
+import Item from "./components/Item/Item";
+import "./Posts.scss";
 
 const Posts = () => {
+  const [newPost, setNewPost] = useState("");
   const { getItem } = useLocalStorage();
   const navigate = useNavigate();
   const { data, isLoading } = useQuery({
@@ -14,18 +19,25 @@ const Posts = () => {
     queryFn: () => fetchPosts(),
   });
 
-  const { posts, addPosts } = usePostsStore();
+  const { posts, addPosts, addOnePost } = usePostsStore();
+
+  const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    createPost({ title: newPost })
+      .then(({ data }) => addOnePost(data))
+      .then(() => setNewPost(""));
+  };
 
   useEffect(() => {
     const logged = getItem(storageKeys.login);
-    if (!logged.length) {
+    if (!logged) {
       navigate(StaticRoutes.login);
     }
-  }, [isLoading]);
+  }, []);
 
   useEffect(() => {
     if (!isLoading) {
-      addPosts(data);
+      addPosts(data?.data);
     }
   }, [isLoading]);
 
@@ -34,10 +46,20 @@ const Posts = () => {
   }
 
   return (
-    <div>
-      {posts?.map((post) => (
-        <p>{post.title}</p>
-      ))}
+    <div className="posts-page">
+      <div className="create-section">
+        <Input
+          placeholder="New post"
+          value={newPost}
+          onChange={(e) => setNewPost(e.target.value)}
+        />
+        <Button name="Create" onClick={(e) => handleCreate(e)} />
+      </div>
+      <div className="posts">
+        {posts?.map((post) => (
+          <Item key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 };

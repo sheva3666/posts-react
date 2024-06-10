@@ -3,6 +3,7 @@ import Button from "../common/Button/Button";
 import useForm from "../../hooks/useForm";
 import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
 import { useNavigate } from "react-router";
+import { StaticRoutes } from "../../routes";
 import "./RegisterPage.scss";
 
 const RegisterPage = () => {
@@ -14,14 +15,13 @@ const RegisterPage = () => {
     (user: { email: string }) => user.email === formState.email
   );
 
-  console.log(invalidEmail);
-
   const disabled = !formState.email || !formState.password || invalidEmail;
 
   const onSubmit = () => {
     setItems(storageKeys.users, formState);
-    navigate("/login");
+    navigate(StaticRoutes.login);
   };
+
   return (
     <>
       {invalidEmail && <p>User with given email already exist</p>}
