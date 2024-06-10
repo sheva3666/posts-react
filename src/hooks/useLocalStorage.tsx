@@ -13,9 +13,13 @@ const useLocalStorage = () => {
   const getItem = (key: string) => {
     const items = localStorage.getItem(key);
     if (!items) {
-      return [];
+      return null;
     }
     return JSON.parse(items);
+  };
+
+  const removeItem = (key: string) => {
+    return localStorage.removeItem(key);
   };
 
   const setItems = (key: string, object: any) => {
@@ -23,7 +27,7 @@ const useLocalStorage = () => {
     localStorage.setItem(key, JSON.stringify([...exist, object]));
   };
 
-  return { setItem, getItem, setItems };
+  return { setItem, getItem, setItems, removeItem };
 };
 
 export default useLocalStorage;
