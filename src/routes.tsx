@@ -6,7 +6,7 @@ export const StaticRoutes = {
   login: "/login",
   register: "/register",
   posts: "/posts",
-  post: "/post/:postId",
+  postDetails: "/post/:postId",
 };
 
 export const routes = [
@@ -22,8 +22,4 @@ export const routes = [
     path: StaticRoutes.posts,
     Component: Posts,
   },
-  // {
-  //   path: StaticRoutes.post,
-  //   Compoment: FollowedUsersPage,
-  // },
 ];
