@@ -5,7 +5,7 @@ import useForm from "../../hooks/useForm";
 import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import { StaticRoutes } from "../../routes";
+import { StaticRoutes } from "../../routes/routes";
 
 const LoginPage = () => {
   const [incorrectPassword, setIncorrectPassword] = useState(false);

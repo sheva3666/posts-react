@@ -1,6 +1,7 @@
-import LoginPage from "./components/LoginPage/LoginPage";
-import Posts from "./components/Posts/Posts";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
+import LoginPage from "../components/LoginPage/LoginPage";
+import Posts from "../components/Posts/Posts";
+import RegisterPage from "../components/RegisterPage/RegisterPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const StaticRoutes = {
   login: "/login",
@@ -20,6 +21,6 @@ export const routes = [
   },
   {
     path: StaticRoutes.posts,
-    Component: Posts,
+    Component: ProtectedRoute(Posts),
   },
 ];

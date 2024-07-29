@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
-import { StaticRoutes } from "../../routes";
+import { StaticRoutes } from "../../routes/routes";
 import Button from "../common/Button/Button";
 import "./Header.scss";
 

@@ -3,7 +3,7 @@ import Button from "../common/Button/Button";
 import useForm from "../../hooks/useForm";
 import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
 import { useNavigate } from "react-router";
-import { StaticRoutes } from "../../routes";
+import { StaticRoutes } from "../../routes/routes";
 import "./RegisterPage.scss";
 
 const RegisterPage = () => {
