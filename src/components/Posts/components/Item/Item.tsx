@@ -6,7 +6,7 @@ import { useState } from "react";
 import Input from "../../../common/Input/Input";
 
 export interface ItemProps {
-  post: { id: number; title: string };
+  post: Post;
 }
 
 const Item: React.FC<ItemProps> = ({ post }) => {
