@@ -1,11 +1,11 @@
-import "./LoginPage.scss";
-import Input from "../common/Input/Input";
-import Button from "../common/Button/Button";
-import useForm from "../../hooks/useForm";
-import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
-import { useNavigate } from "react-router";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
 import { StaticRoutes } from "../../routes/routes";
+import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
+import useForm from "../../hooks/useForm";
+
+import Form from "../../components/Form/Form";
 
 const LoginPage = () => {
   const [incorrectPassword, setIncorrectPassword] = useState(false);
@@ -31,20 +31,15 @@ const LoginPage = () => {
   return (
     <>
       {incorrectPassword && <p>Incorrect user email or password</p>}
-      <form className="login-form">
-        <Input
-          onChange={(e) => handleForm("email", e.target.value)}
-          placeholder="Email"
-          value={formState.email}
-        />
-        <Input
-          onChange={(e) => handleForm("password", e.target.value)}
-          placeholder="Password"
-          value={formState.password}
-          type="password"
-        />
-        <Button disabled={disabled} name="Login" onClick={(e) => onSubmit(e)} />
-      </form>
+      <Form
+        isDisabled={disabled}
+        handleEmailChange={(e) => handleForm("email", e.target.value)}
+        handlePasswordChange={(e) => handleForm("password", e.target.value)}
+        onSubmit={(e) => onSubmit(e)}
+        emailValue={formState.email}
+        passwordValue={formState.password}
+        submitButtonLabel="Login"
+      />
     </>
   );
 };

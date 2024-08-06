@@ -1,10 +1,9 @@
-import Input from "../common/Input/Input";
-import Button from "../common/Button/Button";
+import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm";
 import useLocalStorage, { storageKeys } from "../../hooks/useLocalStorage";
-import { useNavigate } from "react-router";
 import { StaticRoutes } from "../../routes/routes";
-import "./RegisterPage.scss";
+
+import Form from "../../components/Form/Form";
 
 const RegisterPage = () => {
   const { handleForm, formState } = useForm({ email: "", password: "" });
@@ -25,20 +24,15 @@ const RegisterPage = () => {
   return (
     <>
       {invalidEmail && <p>User with given email already exist</p>}
-      <form className="login-form">
-        <Input
-          onChange={(e) => handleForm("email", e.target.value)}
-          placeholder="Email"
-          value={formState.email}
-        />
-        <Input
-          onChange={(e) => handleForm("password", e.target.value)}
-          placeholder="Password"
-          value={formState.password}
-          type="password"
-        />
-        <Button disabled={disabled} name="Register" onClick={onSubmit} />
-      </form>
+      <Form
+        isDisabled={disabled}
+        handleEmailChange={(e) => handleForm("email", e.target.value)}
+        handlePasswordChange={(e) => handleForm("password", e.target.value)}
+        onSubmit={onSubmit}
+        emailValue={formState.email}
+        passwordValue={formState.password}
+        submitButtonLabel="Register"
+      />
     </>
   );
 };

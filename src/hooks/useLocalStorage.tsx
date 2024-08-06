@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-
 export const storageKeys = {
   users: "USERS",
   login: "LOGIN",
 };
 
 const useLocalStorage = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setItem = (key: string, object: any) => {
     localStorage.setItem(key, JSON.stringify(object));
   };
@@ -22,9 +21,12 @@ const useLocalStorage = () => {
     return localStorage.removeItem(key);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setItems = (key: string, object: any) => {
     const exist = getItem(key);
-    localStorage.setItem(key, JSON.stringify([...exist, object]));
+    if (exist) {
+      localStorage.setItem(key, JSON.stringify([...exist, object]));
+    } else localStorage.setItem(key, JSON.stringify([object]));
   };
 
   return { setItem, getItem, setItems, removeItem };

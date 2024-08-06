@@ -1,9 +1,9 @@
 import { deletePost, updatePost } from "../../../../api/api";
-import Button from "../../../common/Button/Button";
+import Button from "../../../../components/common/Button/Button";
 import "./Item.scss";
 import usePostsStore from "../../../../stores/postsStore";
 import { useState } from "react";
-import Input from "../../../common/Input/Input";
+import Input from "../../../../components/common/Input/Input";
 
 export interface ItemProps {
   post: Post;

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import usePostsStore from "../../stores/postsStore";
 import { fetchPosts, createPost } from "../../api/api";
-import Button from "../common/Button/Button";
-import Input from "../common/Input/Input";
+import Button from "../../components/common/Button/Button";
+import Input from "../../components/common/Input/Input";
 import Item from "./components/Item/Item";
 import "./Posts.scss";
 

@@ -6,7 +6,7 @@ export interface UseFormProps {
 }
 
 const useForm = ({ email, password }: UseFormProps) => {
-  const [formState, setFormState] = useState({ email, password });
+  const [formState, setFormState] = useState<UserInput>({ email, password });
 
   const handleForm = (key: string, value: string) => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));

@@ -1,6 +1,6 @@
-import LoginPage from "../components/LoginPage/LoginPage";
-import Posts from "../components/Posts/Posts";
-import RegisterPage from "../components/RegisterPage/RegisterPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import Posts from "../pages/Posts/Posts";
+import RegisterPage from "../pages/RegisterPage/RegisterPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const StaticRoutes = {
