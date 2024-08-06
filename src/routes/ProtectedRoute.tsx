@@ -1,23 +1,29 @@
 import { useNavigate } from "react-router";
 import useLocalStorage, { storageKeys } from "../hooks/useLocalStorage";
 import { StaticRoutes } from "./routes";
-import { ComponentType } from "react";
+import { ComponentType, useEffect } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ProtectedRoute = <P extends object>(Component: ComponentType<P>) => {
+interface ProtectedRouteProps<P> {
+  component: ComponentType<P>;
+  componentProps: P;
+}
+
+const ProtectedRoute = <P extends object>({
+  component: Component,
+  componentProps,
+}: ProtectedRouteProps<P>) => {
   const navigate = useNavigate();
   const { getItem } = useLocalStorage();
 
-  return (props: P) => {
-    const logged = getItem(storageKeys.login);
+  const logged = getItem(storageKeys.login);
 
+  useEffect(() => {
     if (!logged) {
       navigate(StaticRoutes.login);
-      return null;
     }
+  }, []);
 
-    return <Component {...props} />;
-  };
+  return <Component {...componentProps} />;
 };
 
 export default ProtectedRoute;

@@ -21,6 +21,9 @@ export const routes = [
   },
   {
     path: StaticRoutes.posts,
-    Component: ProtectedRoute(Posts),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Component: (props: any) => (
+      <ProtectedRoute component={Posts} componentProps={props} />
+    ),
   },
 ];

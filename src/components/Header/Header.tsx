@@ -14,7 +14,7 @@ const Header = () => {
   };
   return (
     <div className="header">
-      <Button onClick={() => navigate(StaticRoutes.login)} name="Login" />
+      {/* {/* <Button onClick={() => navigate(StaticRoutes.login)} name="Login" /> */}
       <Button onClick={() => navigate(StaticRoutes.register)} name="Register" />
       {isLogged && <Button onClick={onLogout} name="Logout" />}
     </div>
