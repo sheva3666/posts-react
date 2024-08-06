@@ -12,6 +12,6 @@ export const createPost = async (post: { title: string }) => {
   return await axios.post(`http://localhost:3000/posts`, post);
 };
 
-export const updatePost = async (post: { id: number; title: string }) => {
+export const updatePost = async (post: Post) => {
   return await axios.put(`http://localhost:3000/posts/${post.id}`, post);
 };
